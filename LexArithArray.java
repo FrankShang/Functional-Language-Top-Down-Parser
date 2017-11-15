@@ -1,5 +1,5 @@
 /**
- 
+
 This class is a lexical analyzer for the tokens defined by the grammar:
 
 <plus> --> +
@@ -44,14 +44,14 @@ Period     float parts ending with "."
 E          float parts ending with E or e
 EPlusMinus float parts ending with + or - in exponentiation part
 
-The function "driver" operates the DFA. 
+The function "driver" operates the DFA.
 The array "nextState" returns the next state given the current state and the input character.
 
 To recognize a different token set, modify the following:
 
   enum type "State" and function "isFinal"
   size of array "nextState"
-  function "setNextState" 
+  function "setNextState"
 
 The functions "driver", "getToken", "setLex" remain the same.
 
@@ -60,40 +60,10 @@ import java.util.*;
 
 public abstract class LexArithArray extends IO
 {
-//	public enum State 
-//       	{ 
-//	  // non-final states     ordinal number
-//
-//		Start,             // 0
-//		Period,            // 1
-//		E,                 // 2
-//		EPlusMinus,        // 3
-//
-//	  // final states
-//
-//		Id,                // 4
-//		Int,               // 5
-//		Float,             // 6
-//		FloatE,            // 7
-//		Plus,              // 8
-//		Minus,             // 9
-//		Times,             // 10
-//		Div,               // 11
-//		LParen,            // 12
-//		RParen,            // 13
-//		Assign,            // 14
-//		Semicolon,         // 15
-//
-//		UNDEF;
-//
-//		private boolean isFinal()
-//		{
-//			return ( this.compareTo(State.Id) >= 0 );  
-//		}	
-//	}
-	public enum State 
-	{ 
-	// final states    ordinal number  token accepted 
+
+	public enum State
+	{
+	// final states    ordinal number  token accepted
 
 		Plus,            // 0          +
 		Minus,           // 1          -
@@ -112,14 +82,15 @@ public abstract class LexArithArray extends IO
 		RParen,          // 14         )
 		Comma,           // 15         ,
 		//Assign,          // 16         =
-		Semicolon,       // 17         ;
-	// non-final states                string recognized    
+		Semicolon,       // 16        ;
 
-		Start,           // 18      the empty string
-		Period,          // 19      ".", "+.", "-."
-		E,               // 20      float parts ending with E or e
-		EPlusMinus,      // 21      float parts ending with + or - in exponentiation part
-		UnderscoreMinus,      // 22      "_"
+	 // non-final states                string recognized    
+
+		Start,           // 17      the empty string
+		Period,          // 18      ".", "+.", "-."
+		E,               // 19      float parts ending with E or e
+		EPlusMinus,      // 20      float parts ending with + or - in exponentiation part
+		UnderscoreMinus,      // 21      "_"
 
 	// keyword states
 
@@ -140,7 +111,7 @@ public abstract class LexArithArray extends IO
 		boolean isFinal()
 		{
 			//return ( this.compareTo(State.Comma) <= 0 );  //change
-			return ( this.compareTo(State.Semicolon) <= 0 ); 
+			return ( this.compareTo(State.Semicolon) <= 0 );
 		}
 
 		boolean isCompOp()
@@ -161,12 +132,12 @@ public abstract class LexArithArray extends IO
 	public static State state; // the current state of the FA
 
 	private static State nextState[][] = new State[22][128];
- 
+
           // This array implements the state transition function State x (ASCII char set) --> State.
           // The state argument is converted to its ordinal number used as
-          // the first array index from 0 through 22. 
+          // the first array index from 0 through 22.
 	static HashMap<String, State> keywordMap = new HashMap<String , State>();
-	
+
 	private static void setKeywordMap()
 	{
 		keywordMap.put("int",     State.Keyword_int);
@@ -184,11 +155,11 @@ public abstract class LexArithArray extends IO
 
 	private static int driver()
 
-	// This is the driver of the FA. 
+	// This is the driver of the FA.
 	// If a valid token is found, assigns it to "t" and returns 1.
 	// If an invalid token is found, assigns it to "t" and returns 0.
 	// If end-of-stream is reached without finding any non-whitespace character, returns -1.
-	
+
 
 	{
 		State nextSt; // the next state of the FA
@@ -291,28 +262,28 @@ public abstract class LexArithArray extends IO
 		nextState[State.Start.ordinal()][')'] = State.RParen;
 		nextState[State.Start.ordinal()]['.'] = State.Period;
 		nextState[State.Start.ordinal()][','] = State.Comma;//change
-		
+
 		nextState[State.Lt.ordinal()]['='] = State.Le;//change
 		nextState[State.Gt.ordinal()]['='] = State.Ge;//change
-		
+
 		nextState[State.Plus.ordinal()]['.'] = State.Period;//change
 		nextState[State.Minus.ordinal()]['.'] = State.Period;//change
 		nextState[State.Int.ordinal()]['.'] = State.Float;//change
-		
+
 		nextState[State.Start.ordinal()]['='] = State.Assign;
 		nextState[State.Start.ordinal()][';'] = State.Semicolon;
-					
+
 		nextState[State.Int.ordinal()]['.'] = State.Float;
-			
+
 		nextState[State.Float.ordinal()]['E'] = state.E;
 		nextState[State.Float.ordinal()]['e'] = state.E;
 		//nextState[State.Int  .ordinal()]['e'] = State.E;
 		//nextState[State.Int  .ordinal()]['E'] = State.E;
-			
+
 		nextState[State.E.ordinal()]['+'] = State.EPlusMinus;
 		nextState[State.E.ordinal()]['-'] = State.EPlusMinus;
 		nextState[State.Id.ordinal()]['-'] = State.UnderscoreMinus;
-		
+
 		nextState[State.Id.ordinal()]['_'] = State.UnderscoreMinus;
 
 	} // end setNextState
@@ -333,13 +304,13 @@ public abstract class LexArithArray extends IO
 
 	public static void main(String argv[])
 
-	{		
+	{
 		// argv[0]: input file containing source code using tokens defined above
-		// argv[1]: output file displaying a list of the tokens 
+		// argv[1]: output file displaying a list of the tokens
 
 		setIO( argv[0], argv[1] );
 		setLex();
-		
+
 		int i;
 
 		while ( a != -1 ) // while "a" is not end-of-stream
@@ -350,12 +321,11 @@ public abstract class LexArithArray extends IO
 					keywordCheck();
 				displayln( t+"   : "+state.toString() );
 			}
-				
+
 			else if ( i == 0 )
 				displayln( t+" : Lexical Error, invalid token");
-		} 
+		}
 
 		closeIO();
 	}
-} 
-
+}
