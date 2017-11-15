@@ -1,0 +1,26 @@
+int square (int x) = (* x x)
+
+float pi = 3.14159
+
+float cylinder_volume (float length, float radius) =
+    (* length (* (pi) (square radius)))
+    
+int fact (int n) =
+    if (= n 0) then 1
+    else (* n (fact (- n 1)))
+    
+int test (int x, int y) =
+    if (> x -0987) then +6453
+    else -1540
+
+int fib(int n) =
+    if (<= n 1) then n
+    else (+ (fib (- n 1)) (fib (- n 2)))
+    
+int test_cond(int n) =
+    if (< n 0) then -1
+    else if (and (>= n 0) (< n 10)) then 5
+    else if (and (>= n 10) (< n 20)) then 15
+    else if (and (>= n 20) (< n 30)) then 25
+    else if (and (>= n 30) (< n 40)) then 35
+    else 45

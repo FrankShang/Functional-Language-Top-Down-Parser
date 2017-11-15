@@ -1,0 +1,274 @@
+0 <fun def>
+ 1 <header>
+  2 <type>int
+  2 <fun name>square
+  2 <parameter List>
+   3 <parameter> int x
+ 1 <exp>
+  2 <Fun exp>
+   3 *
+   3 <exp>
+    4 x
+   3 <exp>
+    4 x
+
+------------------------
+
+0 <fun def>
+ 1 <header>
+  2 <type>float
+  2 <fun name>pi
+ 1 <exp>
+  2 3.14159
+
+------------------------
+
+0 <fun def>
+ 1 <header>
+  2 <type>float
+  2 <fun name>cylinder_volume
+  2 <parameter List>
+   3 <parameter> float length
+   3 <parameter> float radius
+ 1 <exp>
+  2 <Fun exp>
+   3 *
+   3 <exp>
+    4 length
+   3 <exp>
+    4 <Fun exp>
+     5 *
+     5 <exp>
+      6 <Fun exp>
+       7 pi
+     5 <exp>
+      6 <Fun exp>
+       7 square
+       7 <exp>
+        8 radius
+
+------------------------
+
+0 <fun def>
+ 1 <header>
+  2 <type>int
+  2 <fun name>fact
+  2 <parameter List>
+   3 <parameter> int n
+ 1 <exp>
+  2 if
+   3 <exp>
+    4 <Fun exp>
+     5 =
+     5 <exp>
+      6 n
+     5 <exp>
+      6 0
+  2 then
+   3 <exp>
+    4 1
+  2 else
+   3 <exp>
+    4 <Fun exp>
+     5 *
+     5 <exp>
+      6 n
+     5 <exp>
+      6 <Fun exp>
+       7 fact
+       7 <exp>
+        8 <Fun exp>
+         9 -
+         9 <exp>
+          10 n
+         9 <exp>
+          10 1
+
+------------------------
+
+0 <fun def>
+ 1 <header>
+  2 <type>int
+  2 <fun name>test
+  2 <parameter List>
+   3 <parameter> int x
+   3 <parameter> int y
+ 1 <exp>
+  2 if
+   3 <exp>
+    4 <Fun exp>
+     5 >
+     5 <exp>
+      6 x
+     5 <exp>
+      6 -987
+  2 then
+   3 <exp>
+    4 6453
+  2 else
+   3 <exp>
+    4 -1540
+
+------------------------
+
+0 <fun def>
+ 1 <header>
+  2 <type>int
+  2 <fun name>fib
+  2 <parameter List>
+   3 <parameter> int n
+ 1 <exp>
+  2 if
+   3 <exp>
+    4 <Fun exp>
+     5 <=
+     5 <exp>
+      6 n
+     5 <exp>
+      6 1
+  2 then
+   3 <exp>
+    4 n
+  2 else
+   3 <exp>
+    4 <Fun exp>
+     5 +
+     5 <exp>
+      6 <Fun exp>
+       7 fib
+       7 <exp>
+        8 <Fun exp>
+         9 -
+         9 <exp>
+          10 n
+         9 <exp>
+          10 1
+     5 <exp>
+      6 <Fun exp>
+       7 fib
+       7 <exp>
+        8 <Fun exp>
+         9 -
+         9 <exp>
+          10 n
+         9 <exp>
+          10 2
+
+------------------------
+
+0 <fun def>
+ 1 <header>
+  2 <type>int
+  2 <fun name>test_cond
+  2 <parameter List>
+   3 <parameter> int n
+ 1 <exp>
+  2 if
+   3 <exp>
+    4 <Fun exp>
+     5 <
+     5 <exp>
+      6 n
+     5 <exp>
+      6 0
+  2 then
+   3 <exp>
+    4 -1
+  2 else
+   3 <exp>
+    4 if
+     5 <exp>
+      6 <Fun exp>
+       7 and
+       7 <exp>
+        8 <Fun exp>
+         9 >=
+         9 <exp>
+          10 n
+         9 <exp>
+          10 0
+       7 <exp>
+        8 <Fun exp>
+         9 <
+         9 <exp>
+          10 n
+         9 <exp>
+          10 10
+    4 then
+     5 <exp>
+      6 5
+    4 else
+     5 <exp>
+      6 if
+       7 <exp>
+        8 <Fun exp>
+         9 and
+         9 <exp>
+          10 <Fun exp>
+           11 >=
+           11 <exp>
+            12 n
+           11 <exp>
+            12 10
+         9 <exp>
+          10 <Fun exp>
+           11 <
+           11 <exp>
+            12 n
+           11 <exp>
+            12 20
+      6 then
+       7 <exp>
+        8 15
+      6 else
+       7 <exp>
+        8 if
+         9 <exp>
+          10 <Fun exp>
+           11 and
+           11 <exp>
+            12 <Fun exp>
+             13 >=
+             13 <exp>
+              14 n
+             13 <exp>
+              14 20
+           11 <exp>
+            12 <Fun exp>
+             13 <
+             13 <exp>
+              14 n
+             13 <exp>
+              14 30
+        8 then
+         9 <exp>
+          10 25
+        8 else
+         9 <exp>
+          10 if
+           11 <exp>
+            12 <Fun exp>
+             13 and
+             13 <exp>
+              14 <Fun exp>
+               15 >=
+               15 <exp>
+                16 n
+               15 <exp>
+                16 30
+             13 <exp>
+              14 <Fun exp>
+               15 <
+               15 <exp>
+                16 n
+               15 <exp>
+                16 40
+          10 then
+           11 <exp>
+            12 35
+          10 else
+           11 <exp>
+            12 45
+
+------------------------
+
