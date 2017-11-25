@@ -20,4 +20,4 @@
     * MultipleExp
 * FunExp
     * SingleExp
-    * parenthesizedFunExp
+    * ParenthesizedFunExp
